@@ -5,10 +5,23 @@
   height: 20rem;
 }
 
+.container{
+  margin-top: 7rem;
+}
+
 .books .image img {
   height: 100%;
 }
 
 .describe{
   display: flex;
+}
+
+.book-title{
+  text-align: center;
+}
+
+.book-list li
+{
+  display: block;
 }
