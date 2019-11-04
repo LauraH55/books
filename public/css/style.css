@@ -1,0 +1,10 @@
+.books .image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20rem;
+}
+
+.books .image img {
+  height: 100%;
+}
