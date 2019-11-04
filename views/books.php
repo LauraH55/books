@@ -1,4 +1,4 @@
-<nav class="navbar navbar-light" style="background-color: #FFE4E1;">
+<nav class="navbar navbar-light fixed-top" style="background-color: #FFE4E1;">
   <a style="color: #696969; class="navbar-brand">Libraire en ligne</a>
   <form class="form-inline">
     <input class="form-control mr-sm-2" type="search" placeholder="Recherche" aria-label="Recherche">

@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="public/css/style.css">
     <link rel="stylesheet" href="public/css/all.min.css">
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no">
     <title><?php echo $title ?></title>
   </head>
 
