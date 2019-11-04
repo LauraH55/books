@@ -14,7 +14,11 @@
             <img src="public/<?php echo $book['imageLink']; ?>" class="card-img" alt="Image du livres">
           </div>
           <div class="card-body">
-            <h5 class="card-title book-title"><a href=?action=book$id=<?php echo $book['title']; ?></h5>
+            <h5 class="card-title book-title">
+              <a href="?action=book&id=<?php echo $book['id']; ?>">
+                <?php  echo $book['title']; ?>
+              </a>
+            </h5>
             <ul class="book-list">
               <li class="fas fa-pencil-alt"> <?php echo $book['author']; ?></li>
               <li class="fa fa-calendar"> <?php echo $book['year']; ?></li>
