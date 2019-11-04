@@ -11,7 +11,7 @@
 <div class="container">
 
 
-  
+
 
   <div class="row">
     <?php foreach ($books as $book) { ?>
@@ -28,8 +28,8 @@
             </ul>
 
           </div>
-          <div class="card-footer text-muted">
-            <a style="text-align: center;" href="<?php echo $book['link'];?>" class="btn btn-primary">Description</a>
+          <div class="card-footer text-muted text-center">
+            <a style="text-align: center;" href="<?php echo $book['link'];?>" class="btn btn-primary ">Description</a>
           </div>
         </div>
       </div>

@@ -24,4 +24,6 @@
 .book-list li
 {
   display: block;
+  font-style: italic;
+  color: #696969;
 }
