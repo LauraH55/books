@@ -8,7 +8,7 @@
 
   <div class="row">
     <?php foreach ($books as $book) { ?>
-      <div class="col-md-4">
+      <div class="col-md-3 describe">
         <div class="card mb-3 books">
           <div class="image">
             <img src="public/<?php echo $book['imageLink']; ?>" class="card-img" alt="Image du livres">

@@ -8,3 +8,7 @@
 .books .image img {
   height: 100%;
 }
+
+.describe{
+  display: flex;
+}
