@@ -10,6 +10,13 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-light fixed-top" style="background-color: #FFE4E1;">
+      <a style="color: #696969;" class="navbar-brand">Libraire en ligne</a>
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Recherche" aria-label="Recherche">
+        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Recherche</button>
+      </form>
+    </nav>
     <?php echo $content ?>
       <!-- Mettre le code ici -->
 
