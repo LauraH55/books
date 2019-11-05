@@ -1,5 +1,10 @@
 <?php
+
+$db = new PDO('mysql:host=localhost;dbname=books', 'root');
+
 $action = isset($_GET['action']) ? (string) $_GET['action'] : 'books';
+
+
 
 switch ($action) {
   case "books":
