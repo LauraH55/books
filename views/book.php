@@ -6,7 +6,7 @@
     <div class="row">
     <div class="col-4">
       <div class="image">
-        <img src="public/<?php echo $book['imageLink']; ?>" alt="Image du livres">
+        <img src="<?php echo $book['image']; ?>" alt="Image du livres">
       </div>
     </div>
       <div class="col-8">
