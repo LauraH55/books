@@ -6,12 +6,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <link rel="stylesheet" href="public/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=McLaren&display=swap" rel="stylesheet">
     <title><?php echo $title ?></title>
   </head>
 
   <body style="padding-top: 5rem;">
     <nav class="navbar navbar-light fixed-top" style="background-color: #FFE4E1;">
-      <a style="color: #696969;" class="navbar-brand">Libraire en ligne</a>
+      <a style="color: #696969;" class="navbar-brand font">Libraire en ligne</a>
       <form class="form-inline">
         <input class="form-control mr-sm-2" type="search" placeholder="Recherche" aria-label="Recherche">
         <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Recherche</button>
