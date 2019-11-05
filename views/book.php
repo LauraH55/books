@@ -1,19 +1,20 @@
 <?php $title = "Librairie"; ?>
 <?php ob_start(); ?>
 
-<div class="row">
-  <div class="container display-flex mt-5">
-    <div class="col-4">
-      <img src="public/<?php echo $book['imageLink']; ?>" alt="Image du livres">
-    </div>
-    <div class="table-responsive-md">
-      <div class="col-8">
 
-      <table class="table table-striped">
+  <div class="container display-flex mt-5">
+    <div class="row">
+    <div class="col-4">
+      <div class="image">
+        <img src="public/<?php echo $book['imageLink']; ?>" alt="Image du livres">
+      </div>
+    </div>
+      <div class="col-8">
+      <table class="table table-striped mt-5">
         <thead>
           <tr>
             <th scope="row">Titre</th>
-            <td>Things Fall Apart</td>
+            <td><?php echo $book ['title']; ?></td>
           </tr>
           <tr>
             <th scope="row">Auteur</th>
