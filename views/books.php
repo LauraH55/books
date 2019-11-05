@@ -11,7 +11,7 @@
       <div class="col-md-3 describe">
         <div class="card mb-3 books">
           <div class="image">
-            <img src="<?php echo $book['image']; ?>" class="card-img" alt="Image du livres">
+            <img src="<?php echo $book['image'] ?$book['image']: "public/images/books/comingsoon.jpg"; ?>" class="card-img" alt="Image du livres">
           </div>
           <div class="card-body">
             <h5 class="card-title book-title">
