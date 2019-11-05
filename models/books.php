@@ -25,10 +25,6 @@ function getBooks()
   $offset = ($page - 1) * $limit;
 
 
-  var_dump($offset);
-
-  die;
-
     $db = dbConnect();
 
     $stmt = $db->prepare('SELECT
@@ -43,7 +39,7 @@ function getBooks()
     $stmt->bindParam(':offset', $offset);
     $stmt->bindParam(':limit', $limit);
 
-    
+
     $stmt->execute();
 
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
