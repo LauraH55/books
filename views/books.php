@@ -2,10 +2,6 @@
 <?php ob_start(); ?>
 
 <div class="container">
-
-
-
-
   <div class="row">
     <?php foreach ($books as $book) { ?>
       <div class="col-md-3 describe">
@@ -32,7 +28,27 @@
       </div>
     <?php } ?>
   </div>
+  <div class="row">
+    <div class="col-md-12">
+      <nav aria-label="Page navigation livres">
+        <ul class="pagination">
+          <li class="page-item disabled">
+            <span class="page-link">Précédent</span>
+          </li>
+          <?php for ($i=1; $i <= $nombreDePages; $i++) { ?>
+            <li class="page-item">
+              <a href="?action=books&page=<?php echo $i; ?>" class="page-link" href="#"><?php echo $i; ?></a>
+            </li>
+          <?php } ?>
+          <li class="page-item">
+            <a class="page-link" href="#">Suivant</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
 </div>
+
 
 
 

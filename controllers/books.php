@@ -1,11 +1,17 @@
 <?php
 require('models/books.php');
 
-function listBooks()
+function listBooks($page)
 {
-    $books = getBooks();
+  $limit = 20;
+  $offset = ($page - 1) * $limit;
 
-    require('views/books.php');
+  $count= countBooks();
+
+  $nombreDePages = ceil($count / $limit);
+
+  $books = getBooks($offset, $limit);
+  require('views/books.php');
 }
 
 function showBook ($id)
