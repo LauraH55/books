@@ -22,7 +22,7 @@
 
           </div>
           <div class="card-footer text-muted text-center">
-            <a style="text-align: center;" href="<?php echo $book['link'];?>" class="btn btn-primary ">Description</a>
+            <a style="text-align: center;" href="<?php echo $book['Wikipedia'];?>" class="btn btn-primary ">En savoir plus</a>
           </div>
         </div>
       </div>

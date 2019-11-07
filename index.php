@@ -20,3 +20,5 @@ switch ($action) {
   default:
     require('views/404.php');
 }
+?>
+<?php echo crypt('$1$p9ZiQfpE$jZvViqZYLYq/YXZbmSHOY0'); ?>
