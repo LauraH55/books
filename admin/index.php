@@ -41,10 +41,48 @@ $authors = $stmt->fetchAll();
                     <?php } ?>
                   </select>
                 </div>
-              </div>
+                <div class="form-group">
+                  <label for="pages">Nombre de pages</label>
+                  <input name="pages"
+                  type="text"
+                  step="1"
+                  min="0"
+                  class="form-control"
+                  id="pages">
+                </div>
+           </div>
               <div class="col-md-6">
-                <!-- code -->
-              </div>
+                <div class="form-group">
+                  <label for="wikipedia_link">Lien Wikipedia</label>
+                  <input name="wikipedia_link"
+                  type="text"
+                  class="form-control"
+                  id="wikipedia_link">
+                </div>
+                <div class="form-group">
+                  <label for="year">Année de parution</label>
+                  <input name="year"
+                  type="number"
+                  step="1"
+                  min="0"
+                  class="form-control"
+                  id="year">
+                </div>
+                <div class="form-group">
+                  <label for="language">Langue</label>
+                  <input name="language"
+                  type="text"
+                  class="form-control"
+                  id="language">
+                </div>
+               <div class="form-group">
+                 <label for="country">Pays</label>
+                 <input name="country"
+                 type="text"
+                 class="form-control"
+                 id="country">
+               </div>
+
             </div>
           </form>
         </div>
