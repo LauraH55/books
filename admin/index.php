@@ -82,9 +82,9 @@ $authors = $stmt->fetchAll();
                  class="form-control"
                  id="country">
                </div>
-
-            </div>
-          </form>
-        </div>
-      </body>
-      </html>
+             </div>
+           </form>
+         </div>
+       </body>
+       </html>
+               
