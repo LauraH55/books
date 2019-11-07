@@ -1,9 +1,25 @@
 <?php
 
 $db = new PDO('mysql:host=localhost;dbname=books', 'root');
+
+$id= isset($_GET['id']) ? (int)$_GET ['id'] : null;
+if ($id) {
+  // récuperer les données du livres
+  echo $i;
+  $stmt = $db->prepare("SELECT * FROM books WHERE id=:id");
+  $stmt-> bindParam(':id', $id, PDO::PARAM_INT);
+  $stmt->execute();
+  $authors = $stmt->fetchAll();
+
+
+}
+
+
+
 $stmt = $db->prepare("SELECT * FROM authors ORDER BY name");
 $stmt->execute();
 $authors = $stmt->fetchAll();
+
 
 if (isset($_POST['book'])) {
   $title = (string) $_POST['title'];
@@ -57,7 +73,7 @@ if (isset($_POST['book'])) {
 
     $id = $db->lastInsertId();
 
-    var_dump($id);
+  
 
 
 
