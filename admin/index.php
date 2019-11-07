@@ -5,11 +5,12 @@ $db = new PDO('mysql:host=localhost;dbname=books', 'root');
 $id= isset($_GET['id']) ? (int)$_GET ['id'] : null;
 if ($id) {
   // récuperer les données du livres
-  echo $i;
+
   $stmt = $db->prepare("SELECT * FROM books WHERE id=:id");
   $stmt-> bindParam(':id', $id, PDO::PARAM_INT);
   $stmt->execute();
   $book = $stmt->fetch();
+
 
 
 }
@@ -103,17 +104,21 @@ if (isset($_POST['book'])) {
           <div class="col-md-6">
             <div class="form-group">
               <label for="title">Titre du livre</label>
-              <input name="title" maxlength="20" type="text" class="form-control" id="title" aria-describedby="titleHelp" placeholder="Titre du livre...">
+              <input name="title"  value="<?php echo isset($book) ? $book['title'] : ''; ?>"  maxlength="20" type="text" class="form-control" id="title" aria-describedby="titleHelp" placeholder="Titre du livre...">
               <small id="titleHelp" class="form-text text-muted">Titre du livre entre 0 et 255 caractères.</small>
             </div>
             <div class="form-group">
               <label for="description">Description</label>
-              <textarea name="description" class="form-control" id="description" rows="3"></textarea>
+              <textarea name="description" <?php echo isset($book) ? $book['description'] : ''; ?> class="form-control" id="description" rows="3"></textarea>
             </div>
             <div class="form-group">
               <label for="author_id">Auteur</label>
               <select name="author_id" class="form-control" id="author_id">
                 <?php foreach ($authors as $author) { ?>
+                  <?php if (isset($book) && $book['author_id'] == $author['id']) { ?>
+                    <option <?php echo (isset($book) && $book['author_id'] === $author['id']) ? 'selected' : ''; ?> value="<?php echo $author['id']; ?>">
+                <?php echo $author['name']; ?>
+               </option>
                   <option value="<?php echo $author['id']; ?>">
                     <?php echo $author ['name']; ?>
                   </option>
