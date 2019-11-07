@@ -9,7 +9,7 @@ if ($id) {
   $stmt = $db->prepare("SELECT * FROM books WHERE id=:id");
   $stmt-> bindParam(':id', $id, PDO::PARAM_INT);
   $stmt->execute();
-  $authors = $stmt->fetchAll();
+  $book = $stmt->fetch();
 
 
 }
@@ -73,7 +73,7 @@ if (isset($_POST['book'])) {
 
     $id = $db->lastInsertId();
 
-  
+
 
 
 
