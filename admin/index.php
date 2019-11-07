@@ -23,6 +23,50 @@ if (isset($_POST['book'])) {
     $wikipediaLink = "";
   }
 
+  $stmt = $db->prepare( 'INSERT INTO `books` (
+    `title`,
+    `description`,
+    `author_id`,
+    `pages`,
+    `wikipedia_link`,
+    `year`,
+    `language`,
+    `country`
+    )
+    VALUES (
+      :title,
+      :description,
+      :author_id,
+      :pages,
+      :wikipedia_link,
+      :year,
+      :language,
+      :country
+    )');
+
+    $stmt-> bindParam(':title', $title, PDO::PARAM_STR);
+    $stmt-> bindParam(':description', $description, PDO::PARAM_STR);
+    $stmt-> bindParam(':author_id', $authorId, PDO::PARAM_INT);
+    $stmt-> bindParam(':pages', $pages, PDO::PARAM_INT);
+    $stmt-> bindParam(':wikipedia_link', $wikipediaLink, PDO::PARAM_STR);
+    $stmt-> bindParam(':year', $year, PDO::PARAM_INT);
+    $stmt-> bindParam(':language', $language, PDO::PARAM_STR);
+    $stmt-> bindParam(':country', $country, PDO::PARAM_STR);
+
+    $stmt-> execute ();
+
+    $id = $db->lastInsertId();
+
+    var_dump($id);
+
+
+
+
+
+
+
+
+  // INSERT INTO books (title, description) VALUES ('test','ok')
 }
 
  ?>
