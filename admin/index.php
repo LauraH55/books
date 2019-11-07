@@ -5,6 +5,24 @@ $stmt = $db->prepare("SELECT * FROM authors ORDER BY name");
 $stmt->execute();
 $authors = $stmt->fetchAll();
 
+$title = (string) $_POST['title'];
+$description = (string) $_POST['description'];
+$authorId = (int) $_POST['author_id'];
+$pages = (int) $_POST['pages'];
+$wikipediaLink = (string) $_POST['wikipedia_link'];
+$year = (int) $_POST['year'];
+$language = (string) $_POST['language'];
+$country = (string) $_POST['country'];
+
+
+
+
+
+
+
+if (strlen($title) > 255) {
+  $title = substr($title, 0 , 255);
+}
 
 
  ?>
@@ -19,6 +37,7 @@ $authors = $stmt->fetchAll();
   </head>
   <body>
     <div class="container">
+      <h1>Ajouter un livre</h1>
       <form action="./" method="post">
         <div class="row">
           <div class="col-md-6">
