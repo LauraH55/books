@@ -5,25 +5,25 @@ $stmt = $db->prepare("SELECT * FROM authors ORDER BY name");
 $stmt->execute();
 $authors = $stmt->fetchAll();
 
-$title = (string) $_POST['title'];
-$description = (string) $_POST['description'];
-$authorId = (int) $_POST['author_id'];
-$pages = (int) $_POST['pages'];
-$wikipediaLink = (string) $_POST['wikipedia_link'];
-$year = (int) $_POST['year'];
-$language = (string) $_POST['language'];
-$country = (string) $_POST['country'];
+if (isset($_POST['book'])) {
+  $title = (string) $_POST['title'];
+  $description = (string) $_POST['description'];
+  $authorId = (int) $_POST['author_id'];
+  $pages = (int) $_POST['pages'];
+  $wikipediaLink = (string) $_POST['wikipedia_link'];
+  $year = (int) $_POST['year'];
+  $language = (string) $_POST['language'];
+  $country = (string) $_POST['country'];
 
+  if (strlen($title) > 255) {
+    $title = substr($title, 0, 255);
+  }
 
+  if (!preg_match('/^(http|https):\/\/([a-z]{2})\.wikipedia\.org\/([a-zA-Z0-9-_\/%:]+)?/i', $wikipediaLink )) {
+    $wikipediaLink = "";
+  }
 
-
-
-
-
-if (strlen($title) > 255) {
-  $title = substr($title, 0 , 255);
 }
-
 
  ?>
 
@@ -37,7 +37,7 @@ if (strlen($title) > 255) {
   </head>
   <body>
     <div class="container">
-      <h1>Ajouter un livre</h1>
+      <h1 class="mb-3 mt-3"> Ajouter un livre</h1>
       <form action="./" method="post">
         <div class="row">
           <div class="col-md-6">
@@ -105,7 +105,7 @@ if (strlen($title) > 255) {
         </div>
         <div class="row">
           <div class="col-md-12">
-            <button type="submit" class="btn btn-info">Envoyer</button>
+            <button name="book" type="submit" class="btn btn-info">Envoyer</button>
           </div>
         </div>
       </form>
