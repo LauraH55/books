@@ -4,6 +4,10 @@
 
 session_start();
 
+if (isset($_SESSION['id'])) {
+  session_destroy();
+}
+
 $db = new PDO('mysql:host=localhost;dbname=books', 'root');
 
 var_dump($_POST);
@@ -23,7 +27,8 @@ if (filter_var($login, FILTER_VALIDATE_EMAIL) && $motdepasse) {
   if($user && password_verify($motdepasse, $user['password'])) {
     $_SESSION['id'] = $user ['id'];
     $_SESSION['name'] = $user ['name'];
-    var_dump($_SESSION);
+     header('Location: ./profil.php');
+
   }
 
   //var_dump(password_verify($motdepasse, ));
