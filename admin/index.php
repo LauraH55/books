@@ -22,6 +22,10 @@ if (isset($_POST['book'])) {
   $language = (string) $_POST['language'];
   $country = (string) $_POST['country'];
 
+  if(!$title) {
+    throw new Exception('Invalid title');
+  }
+
   if (strlen($title) > 255) {
     $title = substr($title, 0, 255);
   }
@@ -73,28 +77,6 @@ if (isset($_POST['book'])) {
       )');
   }
 
-  $stmt = $db->prepare( 'INSERT INTO `books` (
-    `title`,
-    `description`,
-    `author_id`,
-    `pages`,
-    `wikipedia_link`,
-    `year`,
-    `language`,
-    `country`
-    )
-    VALUES (
-      :title,
-      :description,
-      :author_id,
-      :pages,
-      :wikipedia_link,
-      :year,
-      :language,
-      :country
-    )
-  ');
-
   $stmt-> bindParam(':title', $title, PDO::PARAM_STR);
   $stmt-> bindParam(':description', $description, PDO::PARAM_STR);
   $stmt-> bindParam(':author_id', $authorId, PDO::PARAM_INT);
@@ -139,7 +121,7 @@ if ($id) {
           <div class="col-md-6">
             <div class="form-group">
               <label for="title">Titre du livre</label>
-              <input name="title"  value="<?php echo isset($book) ? $book['title'] : ''; ?>"  maxlength="20" type="text" class="form-control" id="title" aria-describedby="titleHelp" placeholder="Titre du livre...">
+              <input  required name="title"  value="<?php echo isset($book) ? $book['title'] : ''; ?>"  maxlength="20" type="text" class="form-control" id="title" aria-describedby="titleHelp" placeholder="Titre du livre...">
               <small id="titleHelp" class="form-text text-muted">Titre du livre entre 0 et 255 caractères.</small>
             </div>
             <div class="form-group">
@@ -150,11 +132,9 @@ if ($id) {
               <label for="author_id">Auteur</label>
               <select name="author_id" class="form-control" id="author_id">
                 <?php foreach ($authors as $author) { ?>
-                  <?php if (isset($book) && $book['author_id'] == $author['id']) { ?>
-                    <option <?php echo (isset($book) && $book['author_id'] === $author['id']) ? 'selected' : ''; ?> value="<?php echo $author['id']; ?>">
-                      <?php echo $author['name']; ?>
-                    </option>
-                  <?php } ?>
+                  <option <?php echo (isset($book) && $book['author_id'] === $author['id']) ? 'selected' : ''; ?> value="<?php echo $author['id']; ?>">
+                    <?php echo $author['name']; ?>
+                  </option>
                 <?php } ?>
               </select>
             </div>
