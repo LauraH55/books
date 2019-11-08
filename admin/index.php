@@ -3,18 +3,6 @@
 $db = new PDO('mysql:host=localhost;dbname=books', 'root');
 
 $id= isset($_GET['id']) ? (int)$_GET ['id'] : null;
-if ($id) {
-  // récuperer les données du livres
-
-  $stmt = $db->prepare("SELECT * FROM books WHERE id=:id");
-  $stmt-> bindParam(':id', $id, PDO::PARAM_INT);
-  $stmt->execute();
-  $book = $stmt->fetch();
-
-
-
-}
-
 
 
 $stmt = $db->prepare("SELECT * FROM authors ORDER BY name");
@@ -23,6 +11,8 @@ $authors = $stmt->fetchAll();
 
 
 if (isset($_POST['book'])) {
+
+  $id = isset($_POST['id']) ? (int) $_POST ['id'] : null;
   $title = (string) $_POST['title'];
   $description = (string) $_POST['description'];
   $authorId = (int) $_POST['author_id'];
@@ -38,6 +28,49 @@ if (isset($_POST['book'])) {
 
   if (!preg_match('/^(http|https):\/\/([a-z]{2})\.wikipedia\.org\/([a-zA-Z0-9-_\/%:]+)?/i', $wikipediaLink )) {
     $wikipediaLink = "";
+  }
+
+  if($id) {
+    $stmt = $db->prepare('UPDATE books
+      SET title = :title,
+          description = :description,
+          author_id = :author_id,
+          pages = :pages,
+          wikipedia_link = :wikipedia_link,
+          year = :year,
+          language = :language,
+          country = :country
+      WHERE
+        id= :id
+    ');
+    $stmt-> bindParam(':id', $id, PDO::PARAM_INT);
+
+
+
+  } else {
+
+
+
+    $stmt = $db->prepare( 'INSERT INTO `books` (
+      `title`,
+      `description`,
+      `author_id`,
+      `pages`,
+      `wikipedia_link`,
+      `year`,
+      `language`,
+      `country`
+      )
+      VALUES (
+        :title,
+        :description,
+        :author_id,
+        :pages,
+        :wikipedia_link,
+        :year,
+        :language,
+        :country
+      )');
   }
 
   $stmt = $db->prepare( 'INSERT INTO `books` (
@@ -59,32 +92,34 @@ if (isset($_POST['book'])) {
       :year,
       :language,
       :country
-    )');
+    )
+  ');
 
-    $stmt-> bindParam(':title', $title, PDO::PARAM_STR);
-    $stmt-> bindParam(':description', $description, PDO::PARAM_STR);
-    $stmt-> bindParam(':author_id', $authorId, PDO::PARAM_INT);
-    $stmt-> bindParam(':pages', $pages, PDO::PARAM_INT);
-    $stmt-> bindParam(':wikipedia_link', $wikipediaLink, PDO::PARAM_STR);
-    $stmt-> bindParam(':year', $year, PDO::PARAM_INT);
-    $stmt-> bindParam(':language', $language, PDO::PARAM_STR);
-    $stmt-> bindParam(':country', $country, PDO::PARAM_STR);
+  $stmt-> bindParam(':title', $title, PDO::PARAM_STR);
+  $stmt-> bindParam(':description', $description, PDO::PARAM_STR);
+  $stmt-> bindParam(':author_id', $authorId, PDO::PARAM_INT);
+  $stmt-> bindParam(':pages', $pages, PDO::PARAM_INT);
+  $stmt-> bindParam(':wikipedia_link', $wikipediaLink, PDO::PARAM_STR);
+  $stmt-> bindParam(':year', $year, PDO::PARAM_INT);
+  $stmt-> bindParam(':language', $language, PDO::PARAM_STR);
+  $stmt-> bindParam(':country', $country, PDO::PARAM_STR);
 
-    $stmt-> execute ();
+  $stmt-> execute ();
 
+  if (!$id) {
     $id = $db->lastInsertId();
+    header('Location: ' .$_SERVER["REQUEST_URI"] . '?id=' .$id);
+  }
 
-
-
-
-
-
-
-
-
-
-  // INSERT INTO books (title, description) VALUES ('test','ok')
 }
+
+if ($id) {
+  $stmt = $db->prepare("SELECT * FROM books WHERE id=:id");
+  $stmt-> bindParam(':id', $id, PDO::PARAM_INT);
+  $stmt->execute();
+  $book = $stmt->fetch();
+}
+
 
  ?>
 
@@ -98,8 +133,8 @@ if (isset($_POST['book'])) {
   </head>
   <body>
     <div class="container">
-      <h1 class="mb-3 mt-3"> Ajouter un livre</h1>
-      <form action="./" method="post">
+      <h1 class="mb-3 mt-3"> <?php echo !isset($book) ? "Ajouter un livre" : "Editer : " . $book['title']; ?></h1>
+      <form action="./<?php echo isset($book) ? '?id=' . $book['id'] : '' ?>" method="post">
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
@@ -119,7 +154,7 @@ if (isset($_POST['book'])) {
                     <option <?php echo (isset($book) && $book['author_id'] === $author['id']) ? 'selected' : ''; ?> value="<?php echo $author['id']; ?>">
                       <?php echo $author['name']; ?>
                     </option>
-                  <?php } ?>  
+                  <?php } ?>
                 <?php } ?>
               </select>
             </div>
@@ -173,6 +208,7 @@ if (isset($_POST['book'])) {
         </div>
         <div class="row">
           <div class="col-md-12">
+            <input type="hidden" value="<?php echo isset($book) ? $book['id'] : ''; ?>" name="id">
             <button name="book" type="submit" class="btn btn-info">Envoyer</button>
           </div>
         </div>
