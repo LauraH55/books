@@ -117,17 +117,16 @@ if (isset($_POST['book'])) {
                 <?php foreach ($authors as $author) { ?>
                   <?php if (isset($book) && $book['author_id'] == $author['id']) { ?>
                     <option <?php echo (isset($book) && $book['author_id'] === $author['id']) ? 'selected' : ''; ?> value="<?php echo $author['id']; ?>">
-                <?php echo $author['name']; ?>
-               </option>
-                  <option value="<?php echo $author['id']; ?>">
-                    <?php echo $author ['name']; ?>
-                  </option>
+                      <?php echo $author['name']; ?>
+                    </option>
+                  <?php } ?>  
                 <?php } ?>
               </select>
             </div>
             <div class="form-group">
                   <label for="pages">Nombre de pages</label>
                   <input name="pages"
+                  value="<?php echo isset($book) ? $book['pages'] : ''; ?>"
                   type="text"
                   step="1"
                   min="0"
@@ -139,6 +138,7 @@ if (isset($_POST['book'])) {
             <div class="form-group">
               <label for="wikipedia_link">Lien Wikipedia</label>
               <input name="wikipedia_link"
+              value="<?php echo isset($book) ? $book['wikipedia_link'] : ''; ?>"
               type="text"
               class="form-control"
               id="wikipedia_link">
@@ -146,6 +146,7 @@ if (isset($_POST['book'])) {
             <div class="form-group">
               <label for="year">Année de parution</label>
               <input name="year"
+              value="<?php echo isset($book) ? $book['year'] : ''; ?>"
               type="number"
               step="1"
               min="0"
@@ -155,6 +156,7 @@ if (isset($_POST['book'])) {
             <div class="form-group">
               <label for="language">Langue</label>
               <input name="language"
+              value="<?php echo isset($book) ? $book['language'] : ''; ?>"
               type="text"
               class="form-control"
               id="language">
@@ -162,6 +164,7 @@ if (isset($_POST['book'])) {
             <div class="form-group">
              <label for="country">Pays</label>
              <input name="country"
+             value="<?php echo isset($book) ? $book['country'] : ''; ?>"
              type="text"
              class="form-control"
              id="country">
